@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.banma.bpm.dao.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.banma.bpm.domain.model.User" >
+        <id column="ID_" property="id" jdbcType="VARCHAR" />
+        <result column="NAME_" property="name" jdbcType="VARCHAR" />
+        <result column="NICK_NAME_" property="nickName" jdbcType="VARCHAR" />
+        <result column="JOB_NUMBER_" property="jobNumber" jdbcType="VARCHAR" />
+        <result column="EMAIL_" property="email" jdbcType="VARCHAR" />
+        <result column="PWD_" property="pwd" jdbcType="VARCHAR" />
+        <result column="TENANT_ID_" property="tenantId" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    ID_, NAME_, NICK_NAME_, JOB_NUMBER_, EMAIL_, PWD_, TENANT_ID_
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from OWF_ID_USER
+        where ID_ = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from OWF_ID_USER
+    where ID_ = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.banma.bpm.domain.model.User" >
+    insert into OWF_ID_USER (ID_, NAME_, NICK_NAME_,
+      JOB_NUMBER_, EMAIL_, PWD_,
+      TENANT_ID_)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+      #{jobNumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR},
+      #{tenantId,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.banma.bpm.domain.model.User" >
+        insert into OWF_ID_USER
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                ID_,
+            </if>
+            <if test="name != null" >
+                NAME_,
+            </if>
+            <if test="nickName != null" >
+                NICK_NAME_,
+            </if>
+            <if test="jobNumber != null" >
+                JOB_NUMBER_,
+            </if>
+            <if test="email != null" >
+                EMAIL_,
+            </if>
+            <if test="pwd != null" >
+                PWD_,
+            </if>
+            <if test="tenantId != null" >
+                TENANT_ID_,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null" >
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="jobNumber != null" >
+                #{jobNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null" >
+                #{pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantId != null" >
+                #{tenantId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.banma.bpm.domain.model.User" >
+        update OWF_ID_USER
+        <set >
+            <if test="name != null" >
+                NAME_ = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null" >
+                NICK_NAME_ = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="jobNumber != null" >
+                JOB_NUMBER_ = #{jobNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                EMAIL_ = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null" >
+                PWD_ = #{pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="tenantId != null" >
+                TENANT_ID_ = #{tenantId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID_ = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.banma.bpm.domain.model.User" >
+    update OWF_ID_USER
+    set NAME_ = #{name,jdbcType=VARCHAR},
+      NICK_NAME_ = #{nickName,jdbcType=VARCHAR},
+      JOB_NUMBER_ = #{jobNumber,jdbcType=VARCHAR},
+      EMAIL_ = #{email,jdbcType=VARCHAR},
+      PWD_ = #{pwd,jdbcType=VARCHAR},
+      TENANT_ID_ = #{tenantId,jdbcType=VARCHAR}
+    where ID_ = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
